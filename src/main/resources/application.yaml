@@ -1,0 +1,20 @@
+
+
+spring:
+  application:
+    name: HabitTracker
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/HabitTracker
+    username: user
+    password: password
+
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
