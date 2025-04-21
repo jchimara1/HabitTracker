@@ -1,4 +1,6 @@
 package swf.army.mil.habittracker;
 
-public class HabitRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface HabitRepository extends JpaRepository<Habit, Long> {
 }
