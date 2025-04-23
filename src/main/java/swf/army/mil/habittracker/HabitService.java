@@ -1,8 +1,13 @@
 package swf.army.mil.habittracker;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
+
 
 @Service
 public class HabitService {
@@ -21,5 +26,10 @@ public class HabitService {
 
     public Habit createHabit(Habit newTodo) {
         return habitRepository.save(newTodo);
+    }
+
+
+    public Optional<Habit> getHabitById(Long testId) {
+       return habitRepository.findById(testId);
     }
 }
