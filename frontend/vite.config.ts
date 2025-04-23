@@ -8,9 +8,18 @@ export default defineConfig({
   build: {
     outDir: 'build',
   },
+
   test: {
     globals: true,     environment: 'jsdom', // Simulates a browser environment
     setupFiles: './src/setupTest.ts', // File for test setup (see below)
     css: true, // Optional: Include CSS in tests if needed
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      },
+    },
+  }
 })
