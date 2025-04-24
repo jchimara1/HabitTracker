@@ -15,6 +15,24 @@ const HabitPage = () => {
     return (
         <div>
             <h2 role='heading'>Habit List</h2>
+            <form>
+                <label>Title:
+                <input role='textbox' name='title'/>
+                </label>
+                <br/>
+                <label>Description:
+                    <input role='textbox' name='description'/>
+                </label>
+                <br/>
+                <label>Frequency:
+                    <input role='textbox' name='frequency'/>
+                </label>
+                <br/>
+                <label>Mood:
+                    <input role='textbox' name='mood'/>
+                </label>
+
+            </form>
             <ul role='list'>
                 {habit.map(user => (
                     <li role='listitem' key={user.id}>

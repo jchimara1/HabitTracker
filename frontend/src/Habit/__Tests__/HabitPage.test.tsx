@@ -48,6 +48,14 @@ describe('habit', ()=>{
     })
 
 
+    it("4 input fields should be present on the habit page", async() => {
+        render(<HabitPage/>)
+
+        const items = await screen.findAllByRole('textbox');
+        expect(items.length).toBeGreaterThan(3);
+    })
+
+
 
 
 
