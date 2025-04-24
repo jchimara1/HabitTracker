@@ -2,10 +2,7 @@ package swf.army.mil.habittracker;
 
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,11 @@ public class HabitController {
     public ResponseEntity<List<Habit>> getAllHabits(){
         List<Habit> habits = habitService.fetchHabits();
         return ResponseEntity.ok(habits);
+    }
+
+    @PostMapping
+    public ResponseEntity<Habit> createHabit(@RequestBody Habit newHabit){
+        Habit savedHabit = habitService.createHabit(newHabit);
+        return ResponseEntity.ok(savedHabit);
     }
 }

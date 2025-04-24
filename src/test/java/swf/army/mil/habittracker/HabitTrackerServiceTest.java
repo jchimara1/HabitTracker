@@ -68,7 +68,10 @@ public class HabitTrackerServiceTest {
 
 
     @Test
-    void ShouldDeleteHabitById(){
+    void ShouldCreateAHabit(){
+        Habit userHabit = new Habit(2L,"code", "code the backend of a website", 1, 8.4);
+        int userID = Math.toIntExact(userHabit.getId());
+        listOfHabits.add(userID , userHabit);
 
 
     }
