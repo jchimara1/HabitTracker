@@ -12,3 +12,4 @@ export const fetchHabits : fetchHabit =() => (
     axios.get('/api/habits')
         .then((r: AxiosResponse<HabitType[]>) => r.data)
 )
+

@@ -3,14 +3,19 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 
 import HabitPage from "../../components/HabitPage.tsx";
-import {fetchHabits} from "../../components/HabitService.tsx";
+
 import {setupServer} from "msw/node";
 import {HabitType} from "../../components/habitType.ts";
 import {http, HttpResponse} from "msw";
+import {userEvent} from '@testing-library/user-event';
+import {waitFor} from "@testing-library/dom";
+
+
 
 
 describe('habit', ()=>{
 
+    const user = userEvent.setup()
     const server = setupServer()
     beforeAll(() => server.listen({onUnhandledRequest: 'error'}))
     afterAll(() => server.close())
@@ -55,6 +60,29 @@ describe('habit', ()=>{
         expect(items.length).toBeGreaterThan(3);
     })
 
+    it("should have a submit button", async() => {
+        render(<HabitPage/>)
+
+        const items = await screen.findAllByRole('button');
+        expect(items.length).toBeGreaterThan(0);
+    })
+
+    it("This should find and submit my user Input", async () => {
+        render(<HabitPage/>)
+        await user.type(screen.getByPlaceholderText('title'), "test habit")
+        await user.type(screen.getByPlaceholderText('description'), "finish the habit application")
+        await user.type(screen.getByPlaceholderText('frequency'), '0')
+        await user.type(screen.getByPlaceholderText('mood'), '8.5')
+        await user.click(screen.getByRole('button', { name: 'submit' }))
+
+        await waitFor(() => {
+            expect(screen.queryByText(/test habit/)).toBeVisible()
+        });
+    })
+
+    it("This should send the user inputted habit to the database", async () => {
+
+    })
 
 
 
